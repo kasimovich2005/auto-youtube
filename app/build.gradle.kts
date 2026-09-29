@@ -26,12 +26,21 @@ android {
     }
 
     signingConfigs {
+        // v1 (JAR) signing in addition to v2: some file managers and package
+        // installers on older One UI builds fail with "App not installed" on
+        // v2-only APKs.
+        getByName("debug") {
+            enableV1Signing = true
+            enableV2Signing = true
+        }
         if (keystoreProps.getProperty("storeFile") != null) {
             create("release") {
                 storeFile = rootProject.file(keystoreProps.getProperty("storeFile"))
                 storePassword = keystoreProps.getProperty("storePassword")
                 keyAlias = keystoreProps.getProperty("keyAlias")
                 keyPassword = keystoreProps.getProperty("keyPassword")
+                enableV1Signing = true
+                enableV2Signing = true
             }
         }
     }

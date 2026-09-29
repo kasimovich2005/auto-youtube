@@ -28,7 +28,7 @@ jobs:
           for apk in app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/release/app-release.apk; do
             echo "== $apk"
             ls -l "$apk"
-            "$BT/apksigner" verify --verbose --print-certs "$apk"
+            "$BT/apksigner" verify --verbose "$apk" | grep -E "^Verifies|^Verified using"
             "$BT/aapt2" dump badging "$apk" | head -20
           done
 
