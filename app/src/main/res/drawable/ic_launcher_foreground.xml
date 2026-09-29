@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Car + globe on a 108dp adaptive-icon canvas (safe zone 21..87). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Globe -->
+    <path
+        android:pathData="M40,38a14,14 0 1,0 28,0a14,14 0 1,0 -28,0"
+        android:strokeWidth="2.5"
+        android:strokeColor="#26C6DA" />
+    <path
+        android:pathData="M48,38a6,14 0 1,0 12,0a6,14 0 1,0 -12,0"
+        android:strokeWidth="2"
+        android:strokeColor="#26C6DA" />
+    <path
+        android:pathData="M40,38H68M42.5,31H65.5M42.5,45H65.5"
+        android:strokeWidth="2"
+        android:strokeColor="#26C6DA" />
+    <!-- Car body -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M28,76V67Q28,63 32,62L39,61L44,55.5Q45.5,54 48,54H60Q62.5,54 64,55.5L69,61L76,62Q80,63 80,67V76Z" />
+    <!-- Windows -->
+    <path
+        android:fillColor="#0B1B2B"
+        android:pathData="M46,60L48.5,56.5H53V60ZM55,60V56.5H59.5L62,60Z" />
+    <!-- Wheels -->
+    <path
+        android:fillColor="#263238"
+        android:pathData="M32.5,77a5.5,5.5 0 1,0 11,0a5.5,5.5 0 1,0 -11,0M64.5,77a5.5,5.5 0 1,0 11,0a5.5,5.5 0 1,0 -11,0" />
+    <path
+        android:fillColor="#B0BEC5"
+        android:pathData="M35.5,77a2.5,2.5 0 1,0 5,0a2.5,2.5 0 1,0 -5,0M67.5,77a2.5,2.5 0 1,0 5,0a2.5,2.5 0 1,0 -5,0" />
+</vector>

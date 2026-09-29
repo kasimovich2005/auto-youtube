@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Needed to load web pages. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Normal (install-time) permission, used only to show
+         "No internet connection" and the Diagnostics "Internet" line. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Android 11 package visibility: lets Diagnostics read the installed
+         Android Auto version. No other packages are queried. -->
+    <queries>
+        <package android:name="com.google.android.projection.gearhead" />
+    </queries>
+
+    <application
+        android:name=".AutoBrowserApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AutoBrowser"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="35">
+
+        <!-- Phone browser. -->
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:theme="@style/Theme.AutoBrowser.WithActionBar"
+            android:exported="false"
+            android:label="@string/settings" />
+
+        <activity
+            android:name=".DiagnosticsActivity"
+            android:theme="@style/Theme.AutoBrowser.WithActionBar"
+            android:exported="false"
+            android:label="@string/diagnostics" />
+
+        <!-- Android Auto: Android for Cars App Library (templated app).
+             Browser and video are not Car App Library categories, so the car
+             screen only offers templated home/diagnostics screens.
+             See README "Known limitations". -->
+        <service
+            android:name=".car.AutoBrowserCarAppService"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="androidx.car.app.CarAppService" />
+                <category android:name="androidx.car.app.category.IOT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc" />
+        <meta-data
+            android:name="androidx.car.app.minCarApiLevel"
+            android:value="1" />
+    </application>
+</manifest>

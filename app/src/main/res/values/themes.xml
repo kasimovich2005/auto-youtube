@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.AutoBrowser" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/brand</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="android:colorBackground">@color/bg</item>
+        <item name="android:windowBackground">@color/bg</item>
+        <item name="android:statusBarColor">@color/bg</item>
+        <item name="android:navigationBarColor">@color/bg</item>
+    </style>
+
+    <!-- Settings and Diagnostics use an action bar with an Up button. -->
+    <style name="Theme.AutoBrowser.WithActionBar" parent="Theme.Material3.DayNight">
+        <item name="colorPrimary">@color/brand</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="android:windowBackground">@color/bg</item>
+    </style>
+
+    <style name="ToolbarButton">
+        <item name="android:layout_width">@dimen/toolbar_button</item>
+        <item name="android:layout_height">@dimen/toolbar_button</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:scaleType">center</item>
+        <item name="tint">@color/on_bg</item>
+    </style>
+
+    <style name="HomeButton" parent="Widget.Material3.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="cornerRadius">16dp</item>
+    </style>
+</resources>
