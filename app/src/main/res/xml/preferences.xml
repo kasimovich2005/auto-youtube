@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/pref_cat_browser">
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="open_youtube"
+            app:title="@string/pref_open_youtube" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="dark_mode"
+            app:title="@string/pref_dark_mode" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="remember_last"
+            app:title="@string/pref_remember_last" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:key="desktop_ua"
+            app:summaryOff="@string/pref_ua_mobile"
+            app:summaryOn="@string/pref_ua_desktop"
+            app:title="@string/pref_desktop_ua" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="javascript"
+            app:title="@string/pref_javascript" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="cookies"
+            app:title="@string/pref_cookies" />
+        <Preference
+            app:key="clear_data"
+            app:title="@string/pref_clear_data" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/pref_cat_about">
+        <Preference
+            app:key="diagnostics"
+            app:title="@string/about_diagnostics" />
+    </PreferenceCategory>
+</PreferenceScreen>
