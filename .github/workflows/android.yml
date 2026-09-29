@@ -22,6 +22,16 @@ jobs:
       - name: Build debug and release APKs
         run: ./gradlew assembleDebug assembleRelease --stacktrace
 
+      - name: Inspect APKs (signature and manifest)
+        run: |
+          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          for apk in app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/release/app-release.apk; do
+            echo "== $apk"
+            ls -l "$apk"
+            "$BT/apksigner" verify --verbose --print-certs "$apk"
+            "$BT/aapt2" dump badging "$apk" | head -20
+          done
+
       - uses: actions/upload-artifact@v4
         with:
           name: auto-browser-apks
@@ -29,3 +39,29 @@ jobs:
             app/build/outputs/apk/debug/app-debug.apk
             app/build/outputs/apk/release/app-release.apk
           if-no-files-found: error
+
+  install-test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: auto-browser-apks
+          path: apks
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Install and launch on Android 11 emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          target: google_apis
+          arch: x86_64
+          disable-animations: true
+          script: ./.github/scripts/emulator-install-test.sh
