@@ -50,15 +50,9 @@ Manbalar (2026-09-29 da tekshirilgan): [Parked apps](https://developer.android.c
 
 ## Build status va Network access talablari
 
-**Holat (2026-09-29):** kod va loyiha strukturasi tayyor, lekin Claude’ning bulut muhitida **build bajarilmadi**:
+**Holat (2026-09-29):** `./gradlew assembleDebug assembleRelease` GitHub Actions’da xatosiz o‘tdi (`.github/workflows/android.yml`). Har bir push’dan keyin APK’lar **Actions → Android build → auto-browser-apks** artifact’ida bo‘ladi.
 
-- Local cache’da faqat Gradle 8.14.3 distributivi bor. Android Gradle Plugin, AndroidX, Car App Library va Android SDK (platform 35, build-tools) cache’da **yo‘q**.
-- `./gradlew assembleDebug --offline` natijasi:
-  ```text
-  Plugin [id: 'com.android.application', version: '8.7.3', apply: false] was not found
-  ```
-- `maven.google.com` barcha artefaktlarni `301` bilan `dl.google.com/dl/android/maven2/...` ga yo‘naltiradi, `dl.google.com` esa muhit tarmoq siyosatida bloklangan (`CONNECT 403`).
-- Faqat statik tekshiruv o‘tkazildi: barcha XML resurslar va Manifest to‘g‘ri tuzilgan (parse xatosiz). Kotlin kompilyatsiyasi hali tasdiqlanmagan.
+Claude’ning bulut muhitida esa lokal build ishlamaydi: local cache’da AGP/SDK yo‘q, `maven.google.com` esa `dl.google.com` ga redirect qiladi va u muhit tarmoq siyosatida bloklangan. Lokal build kerak bo‘lsa:
 
 **Build uchun Project Network Access’da quyidagi domenlarga ruxsat kerak:**
 
